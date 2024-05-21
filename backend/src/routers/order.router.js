@@ -58,11 +58,16 @@ router.get(
       _id: orderId,
     };
 
-    if (!user.isAdmin) {
-      filter.user = user._id;
-    }
+    console.log(user)
 
-    const order = await OrderModel.findOne(filter);
+    let order;
+    if (user.role === "Customer") {
+      filter.user = user._id;
+      order = await OrderModel.findOne(filter);
+    }
+    else if(user.role === "Employee"){
+      order = await OrderModel.findOne(filter)
+    }
 
     if (!order) return res.send(UNAUTHORIZED);
 
@@ -86,16 +91,9 @@ router.get('/allstatus', (req, res) => {
 });
 
 router.get(
-  '/:status?',
+  '/all',
   handler(async (req, res) => {
-    const status = req.params.status;
-    const user = await UserModel.findById(req.user.id);
-    const filter = {};
-
-    if (!user.isAdmin) filter.user = user._id;
-    if (status) filter.status = status;
-
-    const orders = await OrderModel.find(filter).sort('-createdAt');
+    const orders = await OrderModel.find({}).sort('-createdAt');
     res.send(orders);
   })
 );

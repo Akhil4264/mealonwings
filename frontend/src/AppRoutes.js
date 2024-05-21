@@ -17,8 +17,8 @@ import FoodsAdminPage from './pages/FoodsAdmin/FoodsAdminPage';
 import FoodEditPage from './pages/FoodEdit/FoodEditPage';
 import UsersPage from './pages/UsersPage/UsersPage';
 import UserEditPage from './pages/UserEdit/UserEditPage';
-import EmployeePage from './pages/Employee/employee'
-import FlightRegPage from './pages/Flight Regulators/flightregs'
+import EmployeePage from './pages/Employee/Employee'
+import FlightRegPage from './pages/Flight Regulators/Flightregs'
 
 export default function AppRoutes() { 
   return (

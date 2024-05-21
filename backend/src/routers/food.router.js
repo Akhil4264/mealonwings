@@ -14,18 +14,15 @@ router.get(
 );
 
 router.post(
-  '/',
-  admin,
-  handler(async (req, res) => {
-    const { name, price, tags, favorite, imageUrl, origins, cookTime } =
+  '/', handler(async (req, res) => {
+    const { name, price, tags, imageUrl, origins, cookTime } =
       req.body;
 
     const food = new FoodModel({
       name,
       price,
       tags: tags.split ? tags.split(',') : tags,
-      favorite,
-      imageUrl,
+      imageUrl : `/foods/${imageUrl}`,
       origins: origins.split ? origins.split(',') : origins,
       cookTime,
     });
